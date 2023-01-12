@@ -1,0 +1,372 @@
+@import "config";
+@import "menu";
+@import "card_projects";
+
+
+html {
+  font-size: 16px;
+}
+   
+* { 
+  box-sizing: border-box;
+}
+
+body {
+  @include background;
+  background-color: $primary-color;
+  height: 100%;
+  color: white;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0; 
+  font-weight: 400;
+
+  &.lg-heading {
+    font-size: 6rem;
+  }
+
+  &.sm-heading {
+    margin-bottom: 2rem;
+    padding: 0.2rem 1rem;
+    background: rgba(lighten($primary-color, 2), 0.5);
+  }
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+header {
+  position: fixed;
+  z-index: 9999;
+  width: 100%;
+}
+
+.text-secondary {
+  color: $secondary-color;
+}
+
+main {
+  max-width: 2000px;
+
+  padding: 2rem;
+  //height: 100%;
+  min-height: 100vh;
+
+  .icons {
+    margin-top: 1rem;
+    display: inline-block;
+
+    a {
+      padding: 0.4rem;
+      font-size: 2rem;
+
+      &:hover {
+        color: $secondary-color;
+        @include easeOut;
+      }
+    }
+  }
+
+  &#home {
+    overflow: hidden;
+    h1 {
+      margin-top: 10vh;
+    }
+  }
+}
+.about-info {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-areas:
+    "bio bio bio"
+    "job1 job2 job3";
+  grid-template-columns: repeat(3, 1fr);
+
+  // .bio-image {
+  //     grid-area: bioimage;
+  //     margin: auto;
+  //     border-radius: 50%;
+  //     border: $secondary-color 3px solid;
+  // }
+
+  .bio {
+    grid-area: bio;
+    font-size: 1.5rem;
+    max-width: 1000px;
+    text-align: left;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+
+  .job-1 {
+    grid-area: job1;
+  }
+
+  .job-2 {
+    grid-area: job2;
+  }
+
+  .job-3 {
+    grid-area: job3;
+  }
+
+  .job {
+    background: lighten($primary-color, 5);
+    padding: 0.5rem;
+    border-bottom: $secondary-color 5px solid;
+  }
+}
+
+#title {
+  border-bottom: 0;
+  text-align: center;
+}
+
+// work/Project
+
+.projects {
+  display: grid;
+  grid-gap: 0.7rem;
+  grid-template-columns: repeat(3, 1fr);
+
+  .item {
+  }
+  img {
+    width: 100%;
+    border: 3px #fff solid;
+
+    &:hover {
+      opacity: 0.5;
+      border-color: $secondary-color;
+      @include easeOut;
+    }
+  }
+}
+
+// Reachme page
+#reachme {
+  min-height: calc(100vh - 60px);
+}
+.boxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 1rem;
+
+  div {
+    font-size: 2rem;
+    border: 3px white solid;
+    padding: 1.5rem 2.5rem;
+    margin-bottom: 3rem;
+    @include easeOut;
+
+    &:hover {
+      padding: 0.5rem 1.5rem;
+      background: $secondary-color;
+      color: set-text-color($secondary-color);
+
+      span {
+        color: set-text-color($secondary-color);
+      }
+    }
+  }
+}
+
+.contact {
+  padding: 10px 0 10px;
+  max-width: 600px;
+  margin: auto;
+}
+.contact-form {
+  background-color: rgb(24, 51, 45);
+  border: #ff000000 solid 1px;
+}
+#contact-us {
+  padding: 20px 10px;
+}
+.contact-text {
+  margin: 45px auto;
+}
+
+.mail-message-area {
+  width: 100%;
+  padding: 0 15px;
+}
+
+.mail-message {
+  width: 100%;
+  -webkit-transition: all 0.7s;
+  -moz-transition: all 0.7s;
+  transition: all 0.7s;
+  border-radius: 0;
+}
+
+.not-visible-message {
+  height: auto;
+  opacity: 0;
+  margin: 0px 5px 5px 5px;
+  background: lighten(rgb(18, 39, 34), 5);
+  padding: 0.5rem;
+  border-left: #0f82a5 5px solid;
+}
+
+.visible-message {
+  height: auto;
+  opacity: 1;
+  margin: 25px auto 0;
+}
+
+/* Input Styles */
+
+.form {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.075);
+  margin-bottom: 25px;
+  color: #727272;
+  font-size: 13px;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  background-color: rgb(18, 39, 34);
+  transition: all 0.4s;
+}
+
+.form:hover {
+  border: 1px solid #8bc3a3;
+}
+
+.form:focus {
+  color: white;
+  outline: none;
+  border: 1px solid #8bc3a3;
+}
+
+.textarea {
+  height: 200px;
+  max-height: 200px;
+  max-width: 100%;
+  color: #fff;
+  background-color: rgb(18, 39, 34);
+}
+
+/* Generic Button Styles */
+.btnContainer {
+  position: relative;
+  padding-bottom: 39px;
+}
+
+.button {
+  padding: 8px 12px;
+  background: #0a5175;
+  display: block;
+  width: 120px;
+  margin: 10px 0 0px 0;
+  border-radius: 3px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  font-size: 0.8em;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+}
+#loadingIcon {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.3s;
+  opacity: 1;
+  top: 0;
+}
+.button:hover {
+  background: #8bc3a3;
+  color: white;
+}
+
+/* Send Button Styles */
+
+.form-btn {
+  z-index: 999;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  display: block;
+  height: auto;
+  background: rgb(45, 131, 6);
+  padding: 15px;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  margin: auto;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-btn:hover {
+  background: #12a3cf;
+  color: white;
+  border: none;
+}
+
+.form-btn:active {
+  opacity: 0.9;
+}
+center {
+  margin-top: 330px;
+}
+input {
+  position: relative;
+  color: white !important;
+}
+
+//BTN Styles
+
+.btn {
+  display: block;
+  padding: 0.5rem 1rem;
+  border: 0;
+  margin-bottom: 0.3rem;
+
+  &:hover {
+    background: $secondary-color;
+    color: set-text-color($primary-color);
+  }
+}
+
+.btn-dark {
+  @extend .btn;
+  background: darken($primary-color, 50);
+  color: #fff;
+}
+
+.btn-light {
+  @extend .btn;
+  background: lighten($primary-color, 30);
+  color: rgb(26, 26, 26);
+}
+
+#main-footer {
+  text-align: center;
+  padding: 1rem;
+  background: darken($primary-color, 10);
+  color: lighten($primary-color, 80);
+  height: 60px;
+}
+
+@import "mobile";

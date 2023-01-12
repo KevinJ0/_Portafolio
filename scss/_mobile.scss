@@ -1,0 +1,122 @@
+// Widescreens
+
+@include mediaXL {
+    .projects {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    #work .box {
+        width: 290px;
+    }
+}
+
+// Destops & Laptop
+@include mediaLg {
+   
+    .projects {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+}
+
+// Tablets & small latops
+@include mediaMd {
+ 
+    .menu-branding .portrait {
+        width: auto;
+        height: 20vh;
+        min-height: 90px;
+        max-height: 500px;
+    }
+
+    main {
+        text-align: center;
+        align-items: center;
+
+        .lg-heading {
+            margin-top: 50px;
+            line-height: 1;
+            margin-bottom: 1rem;
+            font-size: 4rem;
+        }
+    }
+
+    ul.menu-nav {
+        // height: 70vh;
+    }
+
+    div.menu-branding {
+        // height: 30vh;
+    }
+
+    .menu-side-left {
+        width: 100%;
+        height: 30vh;
+        bottom: inherit;
+        right: 0;
+        top: 0px;
+    }
+
+    .menu-side-right {
+        width: 100%;
+        // height: 70vh;
+        top: 0px; // truco para anular el top, si se pone un top y luego un bottom, no funciona el bottom
+        bottom: inherit;
+        left: 0;
+    }
+
+    .nav-link {
+        font-size: 24px;
+    }
+
+    .about-info {
+        grid-template-areas:
+            "bioimage"
+            "bio"
+            "job1"
+            "job2"
+            "job3";
+        grid-template-columns: 1fr;
+    }
+
+    .projects {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+// Smartphones
+@include mediaSm {
+    #work .box {
+        width: 500px;
+    }
+    .menu-btn {
+    }
+    main#home h1 {
+        margin-top: 10vh;
+    }
+
+    .projects {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    main {
+        padding: 10px;
+
+        .sm-heading {
+            font-size: 1rem;
+        }
+
+        .lg-heading {
+            margin-top: 70px;
+            font-size: 2.8rem;
+        }
+    }
+    .about-info .bio {
+        font-size: 1rem;
+    }
+}
+
+// Smartphones super small
+@include mediaSSm {
+    .projects {
+        grid-template-columns: 1fr;
+    }
+}

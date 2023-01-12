@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="../dist/img/programming.png" type="image/x-icon">
+    <title>CONTACTOS</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../dist/css/reachme.css">
+    <link rel="stylesheet" href="../dist/css/master.css">
+</head>
+
+<body id="">
+    <header id="menu">
+        <div class="menu-btn">
+            <div class="btn-line"></div>
+            <div class="btn-line"></div>
+            <div class="btn-line"></div>
+        </div>
+        
+        <div class="menu-side-right">
+
+            <ul class="menu-nav">
+                <li class="nav-item">
+                    <a class="nav-link " href="../index.html">INICIO</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">ACERCA DE MI</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="mywork.html">MI TRABAJO</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link current" href="reachme.html">CONTACTARME</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- <div class="menu-side-left">
+            <div class="menu-branding">
+                <img src='../dist/img/portrait1.jpg' class="portrait">
+            </div>
+        </div> -->
+    </header>
+    <main id="reachme">
+
+
+        <h1 class="lg-heading">Contactame<span class="text-secondary"> me</span></h1>
+        <h2 class="sm-heading">Así es como puedes contactarme...</h2>
+        
+        <form class="inner contact" id="formulario">
+            <div class="contact-form">
+                <div id="contact-us">
+                    <div class="wow animated" data-wow-delay="1.5s">
+                        <input type="email" name="from_email" id="from_email" required="required" class="form"
+                            placeholder="Correo" required />
+                        <input type="text" name="subject" id="subject" required required="required" class="form"
+                            placeholder="Encabezado" />
+                    </div>
+
+                    <div class="wow animated" data-wow-delay=".5s">
+                        <textarea name="message" id="message" class="form textarea" placeholder="Mensaje"
+                            required></textarea>
+                    </div>
+                    <div class="btnContainer fullwidth">
+                        <button id="form-btn" class="form-btn semibold">Enviar</button>
+                        <img id="loadingIcon" src="../dist/img/loading.svg" alt="Enviando...">
+                    </div>
+                </div>
+
+                <div id="not-visible-message" class="alert gray-bg mail-message not-visible-message">
+                    <strong>Gracias !</strong> Tu correo ha sido enviado.
+                </div>
+            </div>
+
+        </form>
+        </div>
+
+    </main>
+
+
+    <footer id="main-footer">
+
+        Copyright &copy; 2021
+
+    </footer>
+</body>
+<script src="../dist/js/main.js"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+<script type="text/javascript">
+    (function () {
+        emailjs.init("user_IJEGxrrN7E3FWwkMjgnId");
+    })();
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("formulario").addEventListener('submit', enviar);
+    });
+    var formBtn = document.getElementById("form-btn");
+    var msj = document.getElementById("not-visible-message");
+    var loadingIcon = document.getElementById("loadingIcon");
+
+    function fadeOutMsj() {
+        msj.style.opacity = 0;
+    }
+
+
+    function enviar(event) {
+
+        event.preventDefault();
+
+        formBtn.style.opacity = 0;
+        loadingIcon.style.opacity = 1;
+        let data = {
+            from_email: this.from_email.value,
+            message: this.message.value,
+            subject: this.subject.value,
+        };
+
+        emailjs.send("service_1avi6dj", "template_wl62pn5", data)
+            .then(function (response) {
+                if (response.text === 'OK') {
+                    msj.style.opacity = 1;
+                    setTimeout(fadeOutMsj, 4000);
+                    formBtn.style.opacity = 1;
+                    loadingIcon.style.opacity = 0;
+                    this.message.value = "";
+                    this.subject.value = "";
+                    this.from_email.value = "";
+                }
+                console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+            }, function (err) {
+                alert('Ocurrió un problema al enviar el correo');
+                console.log("FAILED. error=", err);
+            });
+
+    }
+</script>
+
+</html>
