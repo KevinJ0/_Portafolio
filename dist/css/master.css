@@ -277,7 +277,7 @@ body {
 }
 
 body #bg-img {
-  background: url(../img/backgroundsmall.png);
+  background: url(../dist/img/backgroundsmall.png);
   background-attachment: fixed;
   background-size: cover;
   min-height: 700px;
