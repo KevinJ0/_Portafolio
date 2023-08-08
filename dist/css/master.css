@@ -94,7 +94,7 @@
   height: 250px;
   border-radius: 50%;
   border: solid 3px #12a3cf;
-  background-image: url("../img/portrait1.jpg");
+  background-image: url("../dist/img/portrait1.jpg");
   display: none;
 }
 
