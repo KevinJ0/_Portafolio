@@ -94,7 +94,7 @@
   height: 250px;
   border-radius: 50%;
   border: solid 3px #12a3cf;
-  background-image: url("../img/portrait1.png");
+  background-image: url("../img/portrait.png");
   display: none;
 }
 
@@ -277,7 +277,7 @@ body {
 }
 
 body #bg-img {
-  background: url(../img/backgroundsmall.png);
+  background-image: url("../img/backgroundsmall.png");
   background-attachment: fixed;
   background-size: cover;
   min-height: 700px;
