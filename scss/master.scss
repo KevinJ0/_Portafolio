@@ -1,18 +1,16 @@
-@import "config";
-@import "menu";
+@import "_config";
+@import "_menu";
 @import "card_projects";
-
-
+@import "_background_animation";
 html {
   font-size: 16px;
 }
-   
-* { 
+
+* {
   box-sizing: border-box;
 }
 
 body {
-  @include background;
   background-color: $primary-color;
   height: 100%;
   color: white;
@@ -21,10 +19,25 @@ body {
   line-height: 1.5;
 }
 
+body #bg-img {
+  background: url("../img/backgroundsmall.png");
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 700px;
+  height: 100vh;
+  position: relative;
+}
+
+.sub-content-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 h1,
 h2,
 h3 {
-  margin: 0; 
+  margin: 0;
   font-weight: 400;
 
   &.lg-heading {
@@ -53,11 +66,15 @@ header {
   color: $secondary-color;
 }
 
+.sub-content-flex > main {
+  max-width: 1038px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
 main {
-  max-width: 2000px;
-
   padding: 2rem;
-  //height: 100%;
   min-height: 100vh;
 
   .icons {
@@ -76,12 +93,31 @@ main {
   }
 
   &#home {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     overflow: hidden;
     h1 {
       margin-top: 10vh;
     }
   }
 }
+
+#about {
+  .download-cv-btn {
+    margin-bottom: 6em;
+    transition: ease-out 200ms;
+    padding: 10px 20px;
+    border: solid;
+    border-radius: 10px;
+  }
+  .download-cv-btn:hover {
+    background-color: $secondary-color;
+    border-color: $secondary-color;
+    cursor: pointer;
+  }
+}
+
 .about-info {
   display: grid;
   grid-gap: 30px;
@@ -104,10 +140,20 @@ main {
     text-align: left;
     margin: auto;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    .maface {
+      width: clamp(8rem, 19vw, 13rem);
+      border-radius: 100%;
+      align-self: center;
+    }
   }
 
   .job-1 {
+    display: flex;
+    align-items: center;
     grid-area: job1;
+    font-size: small;
   }
 
   .job-2 {
@@ -122,6 +168,7 @@ main {
     background: lighten($primary-color, 5);
     padding: 0.5rem;
     border-bottom: $secondary-color 5px solid;
+    border-radius: 10px;
   }
 }
 
@@ -129,7 +176,13 @@ main {
   border-bottom: 0;
   text-align: center;
 }
-
+//Tecnologies
+.abilities-container {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 // work/Project
 
 .projects {
@@ -148,6 +201,19 @@ main {
       border-color: $secondary-color;
       @include easeOut;
     }
+  }
+}
+.box .btn {
+  background-color: transparent;
+  border: solid white 1px;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-top: 10px;
+  transition: cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
+
+  &:hover {
+    border-color: transparent;
   }
 }
 
@@ -184,7 +250,6 @@ main {
 .contact {
   padding: 10px 0 10px;
   max-width: 600px;
-  margin: auto;
 }
 .contact-form {
   background-color: rgb(24, 51, 45);
@@ -238,16 +303,17 @@ main {
   -moz-transition: all 0.4s;
   background-color: rgb(18, 39, 34);
   transition: all 0.4s;
+  font-family: "Montserrat", sans-serif;
 }
 
 .form:hover {
-  border: 1px solid #8bc3a3;
+  border: 1px solid $secondary-color;
 }
 
 .form:focus {
   color: white;
   outline: none;
-  border: 1px solid #8bc3a3;
+  border: 1px solid $secondary-color;
 }
 
 .textarea {
@@ -275,7 +341,7 @@ main {
   -moz-transition: all 0.3s;
   transition: all 0.3s;
   text-align: center;
-  font-size: 0.8em;
+  font-size: 1em;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
@@ -303,7 +369,7 @@ main {
   width: 180px;
   display: block;
   height: auto;
-  background: rgb(45, 131, 6);
+  background: $secondary-color;
   padding: 15px;
   color: #fff;
   border: none;
@@ -316,6 +382,7 @@ main {
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  font-family: "Montserrat", sans-serif;
 }
 
 .form-btn:hover {

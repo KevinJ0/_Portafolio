@@ -1,7 +1,5 @@
 $secondary-color: #12a3cf;
 
-
-
 // menu button
 .menu-btn {
     position: absolute;
@@ -23,9 +21,7 @@ $secondary-color: #12a3cf;
 
     // Rotate Into X with menu lines
     &.close {
-
         .btn-line {
-
             // line 1 - rotate
             &:nth-child(1) {
                 transform: rotate(45deg);
@@ -61,7 +57,7 @@ $secondary-color: #12a3cf;
 .menu-nav {
     margin: 0;
     padding: 0;
-    background: rgba(darken($primary-color, 3), .99);
+    background: rgba(darken($primary-color, 3), 0.99);
     z-index: 9999;
     list-style: none;
 }
@@ -70,7 +66,6 @@ $secondary-color: #12a3cf;
     margin: 0;
     padding: 0;
     background: rgba(darken($primary-color, 0.1), 0.6);
-
 }
 
 .menu-side-left {
@@ -99,19 +94,16 @@ $secondary-color: #12a3cf;
     height: 250px;
     border-radius: 50%;
     border: solid 3px $secondary-color;
-    background-image: url('../dist/img/portrait1.jpg');
+    //background-image: url("../dist/img/portrait1.jpg");
     display: none;
 }
 
 .nav-item {
-
     // transform: translate3d(600px, 0, 0);
     @include easeOut;
-
 }
 
 .nav-link {
-
     margin: 1rem 0;
     font-size: 30px;
     display: inline-block;
@@ -120,27 +112,21 @@ $secondary-color: #12a3cf;
     color: white;
     text-decoration: none;
     @include easeOut;
-&:hover{
-    color: $secondary-color;
-
-}
+    &:hover {
+        color: $secondary-color;
+    }
 }
 
 .show {
-
     transform: translate3d(0px, 0, 0);
-
 }
 
-.current {   
+.current {
     color: $secondary-color;
-   
 }
 
 @for $x from 1 through 4 {
-
     .nav-item:nth-child(#{$x}) {
         // transition-delay: $x * 0.1s;
-
     }
 }

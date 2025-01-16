@@ -1,104 +1,107 @@
- 
+@import "_config";
+
 :root {
-    --red: #c3002e;
-    --cyan: hsl(180, 62%, 55%);
-    --orange: rgb(231, 76, 60);
-    --blue: hsl(212, 86%, 64%);
-    --purple: #6d429c;
-  
-    --varyDarkBlue: hsl(234, 12%, 34%);
-    --grayishBlue: hsl(229, 6%, 66%);
-    --veryLightGray: hsl(0, 0%, 98%);
-    --weight1: 200;
-    --weight2: 400;
-    --weight3: 600;
+  --red: #c3002e;
+  --cyan: hsl(180, 62%, 55%);
+  --orange: rgb(231, 76, 60);
+  --blue: hsl(212, 86%, 64%);
+  --purple: #6d429c;
+
+  --varyDarkBlue: hsl(234, 12%, 34%);
+  --grayishBlue: hsl(229, 6%, 66%);
+  --veryLightGray: hsl(0, 0%, 98%);
+  --weight1: 200;
+  --weight2: 400;
+  --weight3: 600;
+}
+.row-container {
+  display: flex;
+  align-items: stretch;
+  align-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-around;
+}
+
+#work {
+  .attribution {
+    font-size: 11px;
+    text-align: center;
   }
-  .row-container {
+  .attribution a {
+    color: hsl(228, 45%, 44%);
+  }
+
+  .box p {
+    color: var(--grayishBlue);
+  }
+
+  .box {
+    border-radius: 5px;
+    box-shadow: 0px 30px 40px -20px #0000004f;
+    padding: 20px;
     display: flex;
-    align-items: flex-start;
-    align-content: center;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: space-around;
+    flex-direction: column;
+    margin-bottom: 3rem;
+    max-width: 310px;
+    height: auto;
+    justify-content: space-between;
+    backdrop-filter: blur(10px);
   }
 
+  .box a {
+    width: fit-content;
+  }
+  .box h2 {
+    font-family: "Nunito Sans", sans-serif;
+    a {
+      transition: all 150ms ease-in;
+      &:hover {
+        text-decoration: underline;
+        color: $secondary-color;
+      }
+    }
+  }
 
-  #work {
-    .attribution {
-      font-size: 11px;
+  img {
+    align-self: end;
+    width: clamp(4rem, 9vw, 5rem);
+    max-width: 6rem;
+  }
+
+  @media (max-width: 950px) and (min-width: 450px) {
+    .box {
       text-align: center;
     }
-    .attribution a {
-      color: hsl(228, 45%, 44%);
-    }
-  
-    .box p {
-      color: var(--grayishBlue);
-    }
-  
-    .box {
-      border-radius: 5px;
-      box-shadow: 0px 30px 40px -20px #0000004f;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 3rem;
-      max-width: 310px;
-      height: auto;
-    }
-    .box a {
-      width: fit-content;
-    }
-    .box h2 {
-      font-family: "Nunito Sans", sans-serif;
-      a {
-        transition: all 150ms ease-in;
-        &:hover {
-          text-decoration: underline;
-          color: $secondary-color;
-        }
-      }
-    }
-  
-    img {
-      align-self: end;
-      width: clamp(4rem, 9vw, 5rem);
-      max-width: 6rem;
-    }
-  
-    @media (max-width: 950px) and (min-width: 450px) {
-      .box {
-        text-align: center;
-      }
-    }
-  
-    .cyan {
-      border-top: 3px solid var(--cyan);
-    }
-    .red {
-      border-top: 3px solid var(--red);
-    }
-    .blue {
-      border-top: 3px solid var(--blue);
-    }
-    .orange {
-      border-top: 3px solid var(--orange);
-    }
-    .purple {
-      border-top: 3px solid var(--purple);
-    }
-  
-    #work h2 {
-      color: #e4e4e4;
-      font-weight: var(--weight3);
-    }
-  
-    svg {
-      width: 30px;
-      height: 30px;
-      transition: color 300ms;
-      &:hover {
-        color: #bdbdbd;
-      }
+  }
+
+  .cyan {
+    border-top: 3px solid var(--cyan);
+  }
+  .red {
+    border-top: 3px solid var(--red);
+  }
+  .blue {
+    border-top: 3px solid var(--blue);
+  }
+  .orange {
+    border-top: 3px solid var(--orange);
+  }
+  .purple {
+    border-top: 3px solid var(--purple);
+  }
+
+  #work h2 {
+    color: #e4e4e4;
+    font-weight: var(--weight3);
+  }
+
+  svg {
+    width: 30px;
+    height: 30px;
+    transition: color 300ms;
+    &:hover {
+      color: #bdbdbd;
     }
   }
+}

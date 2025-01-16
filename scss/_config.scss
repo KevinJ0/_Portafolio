@@ -3,10 +3,10 @@ $secondary-color: #0f82a5;
 $show-home-image: true;
 $home-image: url(../dist/img/backgroundsmall.png);
 $background-opacity: 0.8;
+@import url("https://fonts.googleapis.com/css?family=Montserrat:700");
 
 @mixin easeOut {
     transition: all 0.5s ease-out;
-
 }
 
 @mixin background {
@@ -21,10 +21,10 @@ $background-opacity: 0.8;
             z-index: -1;
 
             &::after {
-                content: '';
+                content: "";
                 position: absolute;
                 top: 0;
-                z-index: -1; // to not overlay the home 
+                z-index: -1; // to not overlay the home
                 right: 0;
                 width: 100%;
                 height: 100%;
@@ -37,11 +37,9 @@ $background-opacity: 0.8;
 
 // Set text color
 @function set-text-color($color) {
-    @if(lightness($color) > 40) {
+    @if (lightness($color) > 40) {
         @return rgb(9, 29, 36);
-    }
-
-    @else {
+    } @else {
         @return #fff;
     }
 }
@@ -76,4 +74,3 @@ $background-opacity: 0.8;
         @content;
     }
 }
-
