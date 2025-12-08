@@ -1,9 +1,17 @@
+// ============================================
+// IMPORTS
+// ============================================
 @import "_config";
 @import "_menu";
 @import "card_projects";
 @import "_background_animation";
+@import "animations";
+
+// ============================================
+// BASE STYLES
+// ============================================
 html {
-  font-size: 16px;
+  font-size: 16px; 
 }
 
 * {
@@ -17,23 +25,20 @@ body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5;
+
+  #bg-img {
+    background: url("../img/backgroundsmall.png");
+    background-attachment: fixed;
+    background-size: cover;
+    min-height: 700px;
+    height: 100vh;
+    position: relative;
+  }
 }
 
-body #bg-img {
-  background: url("../img/backgroundsmall.png");
-  background-attachment: fixed;
-  background-size: cover;
-  min-height: 700px;
-  height: 100vh;
-  position: relative;
-}
-
-.sub-content-flex {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
+// ============================================
+// TYPOGRAPHY
+// ============================================
 h1,
 h2,
 h3 {
@@ -56,23 +61,29 @@ a {
   color: white;
 }
 
+// ============================================
+// LAYOUT
+// ============================================
 header {
   position: fixed;
   z-index: 9999;
   width: 100%;
 }
 
-.text-secondary {
-  color: $secondary-color;
-}
-
-.sub-content-flex > main {
-  max-width: 1038px;
+.sub-content-flex {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 3rem;
+
+  > main {
+    max-width: 1038px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+  }
 }
+
 main {
   padding: 2rem;
   min-height: 100vh;
@@ -84,10 +95,10 @@ main {
     a {
       padding: 0.4rem;
       font-size: 2rem;
+      transition: color 0.5s ease-out;
 
       &:hover {
         color: $secondary-color;
-        @include easeOut;
       }
     }
   }
@@ -97,24 +108,36 @@ main {
     align-items: center;
     flex-direction: column;
     overflow: hidden;
+
     h1 {
       margin-top: 10vh;
     }
   }
 }
 
+// ============================================
+// UTILITY CLASSES
+// ============================================
+.text-secondary {
+  color: $secondary-color;
+}
+
+// ============================================
+// ABOUT PAGE
+// ============================================
 #about {
   .download-cv-btn {
     margin-bottom: 6em;
-    transition: ease-out 200ms;
     padding: 10px 20px;
-    border: solid;
+    border: 1px solid white;
     border-radius: 10px;
-  }
-  .download-cv-btn:hover {
-    background-color: $secondary-color;
-    border-color: $secondary-color;
+    transition: all 0.2s ease-out;
     cursor: pointer;
+
+    &:hover {
+      background-color: $secondary-color;
+      border-color: $secondary-color;
+    }
   }
 }
 
@@ -126,22 +149,15 @@ main {
     "job1 job2 job3";
   grid-template-columns: repeat(3, 1fr);
 
-  // .bio-image {
-  //     grid-area: bioimage;
-  //     margin: auto;
-  //     border-radius: 50%;
-  //     border: $secondary-color 3px solid;
-  // }
-
   .bio {
     grid-area: bio;
     font-size: 1.5rem;
     max-width: 1000px;
     text-align: left;
-    margin: auto;
-    margin-bottom: 20px;
+    margin: auto auto 20px;
     display: flex;
     flex-direction: column;
+
     .maface {
       width: clamp(8rem, 19vw, 13rem);
       border-radius: 100%;
@@ -172,55 +188,62 @@ main {
   }
 }
 
+// ============================================
+// TECHNOLOGIES SECTION
+// ============================================
 #title {
   border-bottom: 0;
   text-align: center;
 }
-//Tecnologies
+
 .abilities-container {
-  flex-wrap: wrap;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
-// work/Project
 
+// ============================================
+// PROJECTS SECTION
+// ============================================
 .projects {
   display: grid;
   grid-gap: 0.7rem;
   grid-template-columns: repeat(3, 1fr);
 
-  .item {
-  }
   img {
     width: 100%;
     border: 3px #fff solid;
+    transition: all 0.5s ease-out;
 
     &:hover {
       opacity: 0.5;
       border-color: $secondary-color;
-      @include easeOut;
     }
   }
 }
+
 .box .btn {
   background-color: transparent;
-  border: solid white 1px;
+  border: 1px solid white;
   color: white;
   cursor: pointer;
   border-radius: 3px;
   margin-top: 10px;
-  transition: cubic-bezier(0.47, 0, 0.745, 0.715) 200ms;
+  transition: all 0.2s cubic-bezier(0.47, 0, 0.745, 0.715);
 
   &:hover {
     border-color: transparent;
   }
 }
 
-// Reachme page
+// ============================================
+// CONTACT PAGE
+// ============================================
 #reachme {
   min-height: calc(100vh - 60px);
 }
+
 .boxes {
   display: flex;
   flex-wrap: wrap;
@@ -233,7 +256,7 @@ main {
     border: 3px white solid;
     padding: 1.5rem 2.5rem;
     margin-bottom: 3rem;
-    @include easeOut;
+    transition: all 0.5s ease-out;
 
     &:hover {
       padding: 0.5rem 1.5rem;
@@ -247,17 +270,21 @@ main {
   }
 }
 
+// Contact Form
 .contact {
-  padding: 10px 0 10px;
+  padding: 10px 0;
   max-width: 600px;
 }
+
 .contact-form {
   background-color: rgb(24, 51, 45);
-  border: #ff000000 solid 1px;
+  border: 1px solid transparent;
 }
+
 #contact-us {
   padding: 20px 10px;
 }
+
 .contact-text {
   margin: 45px auto;
 }
@@ -269,8 +296,6 @@ main {
 
 .mail-message {
   width: 100%;
-  -webkit-transition: all 0.7s;
-  -moz-transition: all 0.7s;
   transition: all 0.7s;
   border-radius: 0;
 }
@@ -278,10 +303,10 @@ main {
 .not-visible-message {
   height: auto;
   opacity: 0;
-  margin: 0px 5px 5px 5px;
+  margin: 0 5px 5px;
   background: lighten(rgb(18, 39, 34), 5);
   padding: 0.5rem;
-  border-left: #0f82a5 5px solid;
+  border-left: 5px solid #0f82a5;
 }
 
 .visible-message {
@@ -290,8 +315,7 @@ main {
   margin: 25px auto 0;
 }
 
-/* Input Styles */
-
+// Form Input Styles
 .form {
   width: 100%;
   padding: 15px;
@@ -299,21 +323,19 @@ main {
   margin-bottom: 25px;
   color: #727272;
   font-size: 13px;
-  -webkit-transition: all 0.4s;
-  -moz-transition: all 0.4s;
   background-color: rgb(18, 39, 34);
   transition: all 0.4s;
   font-family: "Montserrat", sans-serif;
-}
 
-.form:hover {
-  border: 1px solid $secondary-color;
-}
+  &:hover {
+    border-color: $secondary-color;
+  }
 
-.form:focus {
-  color: white;
-  outline: none;
-  border: 1px solid $secondary-color;
+  &:focus {
+    color: white;
+    outline: none;
+    border-color: $secondary-color;
+  }
 }
 
 .textarea {
@@ -324,7 +346,14 @@ main {
   background-color: rgb(18, 39, 34);
 }
 
-/* Generic Button Styles */
+input {
+  position: relative;
+  color: white;
+}
+
+// ============================================
+// BUTTONS
+// ============================================
 .btnContainer {
   position: relative;
   padding-bottom: 39px;
@@ -335,31 +364,27 @@ main {
   background: #0a5175;
   display: block;
   width: 120px;
-  margin: 10px 0 0px 0;
+  margin: 10px 0 0;
   border-radius: 3px;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
   transition: all 0.3s;
   text-align: center;
   font-size: 1em;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background: #8bc3a3;
+    color: white;
+  }
 }
+
 #loadingIcon {
   position: absolute;
   left: 50%;
+  top: 0;
   transform: translateX(-50%);
   transition: all 0.3s;
   opacity: 1;
-  top: 0;
 }
-.button:hover {
-  background: #8bc3a3;
-  color: white;
-}
-
-/* Send Button Styles */
 
 .form-btn {
   z-index: 999;
@@ -375,35 +400,23 @@ main {
   border: none;
   border-radius: 3px;
   outline: none;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
   transition: all 0.3s;
   margin: auto;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   font-family: "Montserrat", sans-serif;
+
+  &:hover {
+    background: #12a3cf;
+    color: white;
+    border: none;
+  }
+
+  &:active {
+    opacity: 0.9;
+  }
 }
 
-.form-btn:hover {
-  background: #12a3cf;
-  color: white;
-  border: none;
-}
-
-.form-btn:active {
-  opacity: 0.9;
-}
-center {
-  margin-top: 330px;
-}
-input {
-  position: relative;
-  color: white !important;
-}
-
-//BTN Styles
-
+// Generic Button Styles
 .btn {
   display: block;
   padding: 0.5rem 1rem;
@@ -428,6 +441,9 @@ input {
   color: rgb(26, 26, 26);
 }
 
+// ============================================
+// FOOTER
+// ============================================
 #main-footer {
   text-align: center;
   padding: 1rem;
@@ -436,4 +452,12 @@ input {
   height: 60px;
 }
 
+// Legacy support for center tag
+center {
+  margin-top: 330px;
+}
+
+// ============================================
+// RESPONSIVE
+// ============================================
 @import "mobile";
