@@ -6,6 +6,7 @@
 @import "card_projects";
 @import "_background_animation";
 @import "animations";
+@import "slider";
 
 // ============================================
 // BASE STYLES
@@ -455,7 +456,7 @@ input {
 // Legacy support for center tag
 center {
   margin-top: 330px;
-}
+} 
 
 // ============================================
 // RESPONSIVE
