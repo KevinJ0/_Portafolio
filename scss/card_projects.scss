@@ -64,9 +64,7 @@
   }
 
   img {
-    align-self: end;
-    width: clamp(4rem, 9vw, 5rem);
-    max-width: 6rem;
+    align-self: center;
   }
 
   @media (max-width: 950px) and (min-width: 450px) {
