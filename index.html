@@ -6,6 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Portafolio Kevin</title>
+    <script>
+        // Fix paths for GitHub Pages immediately before loading resources
+        (function () {
+            const pathname = window.location.pathname;
+            if (window.location.hostname === 'kevinj0.github.io') {
+                const match = pathname.match(/^\/([^/]+)(\/|$)/);
+                if (match) {
+                    const basePath = '/' + match[1] + '/';
+                    // Store for later use
+                    window.__ASSET_BASE_PATH = basePath;
+                }
+            }
+        })();
+    </script>
+    <script src="js/path-fixer.js"></script>
     <link rel="shortcut icon" href="dist/img/programming.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/257527c26a.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
