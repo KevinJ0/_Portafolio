@@ -7,21 +7,45 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Portafolio Kevin</title>
     <script>
-        // Fix paths for GitHub Pages immediately before loading resources
+        // Detect GitHub Pages and set base path globally
         (function () {
             const pathname = window.location.pathname;
             if (window.location.hostname === 'kevinj0.github.io') {
                 const match = pathname.match(/^\/([^/]+)(\/|$)/);
                 if (match) {
-                    const basePath = '/' + match[1] + '/';
-                    // Store for later use
-                    window.__ASSET_BASE_PATH = basePath;
+                    window.__BASE_PATH = '/' + match[1] + '/';
+                    window.__IS_GITHUB_PAGES = true;
+                } else {
+                    window.__BASE_PATH = './';
+                    window.__IS_GITHUB_PAGES = false;
                 }
+            } else {
+                window.__BASE_PATH = './';
+                window.__IS_GITHUB_PAGES = false;
             }
         })();
+
+        // Override Image constructor to fix src paths
+        const OriginalImage = window.Image;
+        window.Image = function () {
+            const img = new OriginalImage(...arguments);
+            const originalSrc = img.src;
+            Object.defineProperty(img, 'src', {
+                get() {
+                    return originalSrc;
+                },
+                set(value) {
+                    if (window.__IS_GITHUB_PAGES && value && value.startsWith('dist/')) {
+                        img.src = window.__BASE_PATH + value;
+                    } else {
+                        img.src = value;
+                    }
+                }
+            });
+            return img;
+        };
     </script>
-    <script src="js/path-fixer.js"></script>
-    <link rel="shortcut icon" href="dist/img/programming.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/_Portafolio/dist/img/programming.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/257527c26a.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,9 +53,27 @@
         rel="stylesheet">
     <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="dist/css/master.css">
+    <link rel="stylesheet" href="/_Portafolio/dist/css/master.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+    <script>
+        // Fix all image and resource paths for GitHub Pages
+        (function () {
+            if (!window.__BASE_PATH || !window.__IS_GITHUB_PAGES) return;
+
+            const basePath = window.__BASE_PATH;
+            const originalHTML = document.documentElement.innerHTML;
+            const fixedHTML = originalHTML
+                .replace(/src="dist\//g, 'src="' + basePath + 'dist/')
+                .replace(/src='dist\//g, "src='" + basePath + 'dist/')
+                .replace(/href="dist\//g, 'href="' + basePath + 'dist/')
+                .replace(/href='dist\//g, "href='" + basePath + 'dist/');
+
+            if (fixedHTML !== originalHTML) {
+                document.documentElement.innerHTML = fixedHTML;
+            }
+        })();
+    </script>
 </head>
 
 <body class="hero">
@@ -62,7 +104,7 @@
 
         <!-- <div class="menu-side-left">
       <div class="menu-branding">
-        <img src='dist/img/portrait1.jpg' class="portrait">
+        <img src='/_Portafolio/dist/img/portrait1.jpg' class="portrait">
       </div>
     </div> -->
     </header>
@@ -187,118 +229,118 @@
                                 <div class="image-carousel-container">
                                     <!-- Home screens -->
                                     <div class="carousel-image active">
-                                        <img src="dist/img/works_images/centromedico_cliente/home%20(1).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/home%20(1).png"
                                             alt="Centro Médico Cliente - Home 1">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/home%20(2).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/home%20(2).png"
                                             alt="Centro Médico Cliente - Home 2">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/home%20(3).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/home%20(3).png"
                                             alt="Centro Médico Cliente - Home 3">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/home%20(4).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/home%20(4).png"
                                             alt="Centro Médico Cliente - Home 4">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/home%20(5).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/home%20(5).png"
                                             alt="Centro Médico Cliente - Home 5">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/home%20(6).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/home%20(6).png"
                                             alt="Centro Médico Cliente - Home 6">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/home%20(7).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/home%20(7).png"
                                             alt="Centro Médico Cliente - Home 7">
                                     </div>
 
                                     <!-- Login -->
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/login%20(1).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/login%20(1).png"
                                             alt="Centro Médico Cliente - Login">
                                     </div>
 
                                     <!-- Medical directory -->
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/medical-directory%20(1).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/medical-directory%20(1).png"
                                             alt="Centro Médico Cliente - Medical Directory 1">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/medical-directory%20(2).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/medical-directory%20(2).png"
                                             alt="Centro Médico Cliente - Medical Directory 2">
                                     </div>
 
                                     <!-- Doctor -->
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/doctor%20(1).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/doctor%20(1).png"
                                             alt="Centro Médico Cliente - Doctor 1">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/doctor%20(2).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/doctor%20(2).png"
                                             alt="Centro Médico Cliente - Doctor 2">
                                     </div>
 
                                     <!-- Create appointment -->
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/create-appointment%20(1).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/create-appointment%20(1).png"
                                             alt="Centro Médico Cliente - Create Appointment 1">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/create-appointment%20(2).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/create-appointment%20(2).png"
                                             alt="Centro Médico Cliente - Create Appointment 2">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/create-appointment%20(3).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/create-appointment%20(3).png"
                                             alt="Centro Médico Cliente - Create Appointment 3">
                                     </div>
                                     <!-- Pending appointments -->
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/pending-appointment%20(1).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/pending-appointment%20(1).png"
                                             alt="Centro Médico Cliente - Pending Appointment 1">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/pending-appointment%20(2).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/pending-appointment%20(2).png"
                                             alt="Centro Médico Cliente - Pending Appointment 2">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/pending-appointment%20(3).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/pending-appointment%20(3).png"
                                             alt="Centro Médico Cliente - Pending Appointment 3">
                                     </div>
 
                                     <!-- Ticket -->
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/ticket%20(1).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/ticket%20(1).png"
                                             alt="Centro Médico Cliente - Ticket 1">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/ticket%20(2).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/ticket%20(2).png"
                                             alt="Centro Médico Cliente - Ticket 2">
                                     </div>
 
 
                                     <!-- Contact -->
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/contact%20(1).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/contact%20(1).png"
                                             alt="Centro Médico Cliente - Contact 1">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/contact%20(2).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/contact%20(2).png"
                                             alt="Centro Médico Cliente - Contact 2">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/contact%20(3).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/contact%20(3).png"
                                             alt="Centro Médico Cliente - Contact 3">
                                     </div>
                                     <!-- Location -->
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/location%20(1).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/location%20(1).png"
                                             alt="Centro Médico Cliente - Location 1">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_cliente/location%20(2).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_cliente/location%20(2).png"
                                             alt="Centro Médico Cliente - Location 2">
                                     </div>
 
@@ -343,9 +385,9 @@
                                     </a>
                                 </div>
                                 <div class="slide-tech">
-                                    <img src="dist/img/projects/netcore2.png" alt=".NET Core">
-                                    <img src="dist/img/projects/angular.png" alt="Angular">
-                                    <img src="dist/img/projects/sqlserver.png" alt="SQL Server">
+                                    <img src="/_Portafolio/dist/img/projects/netcore2.png" alt=".NET Core">
+                                    <img src="/_Portafolio/dist/img/projects/angular.png" alt="Angular">
+                                    <img src="/_Portafolio/dist/img/projects/sqlserver.png" alt="SQL Server">
                                 </div>
                             </div>
                         </div>
@@ -357,83 +399,83 @@
                                 <div class="image-carousel-container">
                                     <!-- Login -->
                                     <div class="carousel-image active">
-                                        <img src="dist/img/works_images/centromedico_doctor/login%20(1).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_doctor/login%20(1).png"
                                             alt="Centro Médico Doctor - Login">
                                     </div>
 
                                     <!-- Select Doctor -->
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_doctor/select-doctor%20(1).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_doctor/select-doctor%20(1).png"
                                             alt="Centro Médico Doctor - Select Doctor">
                                     </div>
 
                                     <!-- Calendario -->
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_doctor/calendario%20(1).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_doctor/calendario%20(1).png"
                                             alt="Centro Médico Doctor - Calendario 1">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_doctor/calendario%20(2).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_doctor/calendario%20(2).png"
                                             alt="Centro Médico Doctor - Calendario 2">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_doctor/calendario%20(3).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_doctor/calendario%20(3).png"
                                             alt="Centro Médico Doctor - Calendario 3">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_doctor/calendario%20(4).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_doctor/calendario%20(4).png"
                                             alt="Centro Médico Doctor - Calendario 4">
                                     </div>
 
                                     <!-- Create appointment -->
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_doctor/create-appointment%20(1).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_doctor/create-appointment%20(1).png"
                                             alt="Centro Médico Doctor - Create Appointment 1">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_doctor/create-appointment%20(2).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_doctor/create-appointment%20(2).png"
                                             alt="Centro Médico Doctor - Create Appointment 2">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_doctor/create-appointment%20(3).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_doctor/create-appointment%20(3).png"
                                             alt="Centro Médico Doctor - Create Appointment 3">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_doctor/create-appointment%20(4).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_doctor/create-appointment%20(4).png"
                                             alt="Centro Médico Doctor - Create Appointment 4">
                                     </div>
 
                                     <!-- Register appointment -->
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_doctor/register-appointment%20(1).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_doctor/register-appointment%20(1).png"
                                             alt="Centro Médico Doctor - Register Appointment 1">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_doctor/register-appointment%20(2).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_doctor/register-appointment%20(2).png"
                                             alt="Centro Médico Doctor - Register Appointment 2">
                                     </div>
 
                                     <!-- Reports -->
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_doctor/reports%20(1).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_doctor/reports%20(1).png"
                                             alt="Centro Médico Doctor - Reports">
                                     </div>
 
                                     <!-- Configuration -->
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_doctor/configuration%20(1).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_doctor/configuration%20(1).png"
                                             alt="Centro Médico Doctor - Configuration 1">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_doctor/configuration%20(2).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_doctor/configuration%20(2).png"
                                             alt="Centro Médico Doctor - Configuration 2">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_doctor/configuration%20(3).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_doctor/configuration%20(3).png"
                                             alt="Centro Médico Doctor - Configuration 3">
                                     </div>
                                     <div class="carousel-image">
-                                        <img src="dist/img/works_images/centromedico_doctor/configuration%20(4).png"
+                                        <img src="/_Portafolio/dist/img/works_images/centromedico_doctor/configuration%20(4).png"
                                             alt="Centro Médico Doctor - Configuration 4">
                                     </div>
                                 </div>
@@ -474,9 +516,9 @@
                                     </a>
                                 </div>
                                 <div class="slide-tech">
-                                    <img src="dist/img/projects/netcore2.png" alt=".NET Core">
-                                    <img src="dist/img/projects/angular.png" alt="Angular">
-                                    <img src="dist/img/projects/sqlserver.png" alt="SQL Server">
+                                    <img src="/_Portafolio/dist/img/projects/netcore2.png" alt=".NET Core">
+                                    <img src="/_Portafolio/dist/img/projects/angular.png" alt="Angular">
+                                    <img src="/_Portafolio/dist/img/projects/sqlserver.png" alt="SQL Server">
                                 </div>
                             </div>
                         </div>
@@ -486,7 +528,8 @@
                         <!-- Slide 4: Votación Automatizada -->
                         <div class="slider-slide">
                             <div class="slide-image">
-                                <img src="dist/img/projects/votacion_automatizada.png" alt="Votación Automatizada">
+                                <img src="/_Portafolio/dist/img/projects/votacion_automatizada.png"
+                                    alt="Votación Automatizada">
                             </div>
                             <div class="slide-info">
                                 <span class="project-badge purple">Full Stack</span>
@@ -507,7 +550,7 @@
                                     </a>
                                 </div>
                                 <div class="slide-tech">
-                                    <img src="dist/img/projects/netcore2.png" alt=".NET Core">
+                                    <img src="/_Portafolio/dist/img/projects/netcore2.png" alt=".NET Core">
                                 </div>
                             </div>
                         </div>
@@ -515,7 +558,8 @@
                         <!-- Slide 5: Sistema de Facturación -->
                         <div class="slider-slide">
                             <div class="slide-image">
-                                <img src="dist/img/projects/sistema_facturacion.png" alt="Sistema de Facturación">
+                                <img src="/_Portafolio/dist/img/projects/sistema_facturacion.png"
+                                    alt="Sistema de Facturación">
                             </div>
                             <div class="slide-info">
                                 <span class="project-badge orange">Java</span>
@@ -534,7 +578,7 @@
                                     </a>
                                 </div>
                                 <div class="slide-tech">
-                                    <img src="dist/img/projects/java.png" alt="Java">
+                                    <img src="/_Portafolio/dist/img/projects/java.png" alt="Java">
                                 </div>
                             </div>
                         </div>
@@ -587,7 +631,7 @@
                         </div>
                         <div class="btnContainer fullwidth">
                             <button id="form-btn" class="form-btn">Enviar</button>
-                            <img id="loadingIcon" src="dist/img/loading.svg" alt="Enviando...">
+                            <img id="loadingIcon" src="/_Portafolio/dist/img/loading.svg" alt="Enviando...">
                         </div>
                     </div>
 
@@ -609,7 +653,7 @@
     Todos los derechos reservados &copy; 2026
 
 </footer>
-<script src="dist/js/main.js"></script>
+<script src="/_Portafolio/dist/js/main.js"></script>
 <script src="js/scroll-animations.js"></script>
 <script src="js/project-slider.js"></script>
 
